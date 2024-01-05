@@ -10,8 +10,10 @@ import Login from './users/Login'
 import Blankfrom from './users/Blankfrom'
 import Adminview from './users/Adminview'
 import Adminchangepassword from './users/Adminchangepassword'
-import Userlist from './users/Userlist'
+
 import Logout from './users/Logout'
+import Athlete from './users/Athlete'
+import Corporation from './users/Corporation'
 // import Profile from './users/Profile'
 
 function App() {
@@ -27,7 +29,9 @@ function App() {
       <Route path='/dashboard' element={<Dashboard/>}/>
         <Route path='/changepassword' element={<Adminchangepassword/>}/>
       <Route path='/adminview' element={<Adminview/>}/>
-      <Route path='/userlist' element={<Userlist/>}/>
+      <Route path='/athlete' element={<Athlete/>}/>
+      <Route path='/corporation' element={<Corporation/>}/>
+      
     </Route>
     </Routes></BrowserRouter>
   )

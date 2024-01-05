@@ -314,12 +314,21 @@ const Sidebar = () => {
                       </ul>
                   </li> */}
                   <li className=" nav-item">
-                      <a className="d-flex align-items-center" href="/userlist">
+                      <a className="d-flex align-items-center" href="/corporation">
                           <i data-feather="user" />
-                          <span className="menu-title text-truncate" data-i18n="User">
-                              User
+                          <span className="menu-title text-truncate" data-i18n="Corporation">
+                              <b>Corporation</b>
                           </span>
                       </a>
+                  </li>
+                    <li>
+                      <a className="d-flex align-items-center" href="/athlete">
+                          <i data-feather="user" />
+                          <span className="menu-title text-truncate" data-i18n="User">
+                              <b>Athlete</b>
+                          </span>
+                      </a>
+                  </li>
                       {/* <ul className="menu-content">
                           <li>
                               <a className="d-flex align-items-center" href="app-user-list.html">
@@ -346,7 +355,6 @@ const Sidebar = () => {
                               </a>
                           </li>
                       </ul> */}
-                  </li>
                   {/* <li className=" nav-item">
                       <a className="d-flex align-items-center" href="#">
                           <i data-feather="file-text" />

@@ -1,8 +1,26 @@
-import React from 'react'
+// import { response } from 'express'
+import React, { useEffect, useState } from 'react'
 
-const Userlist = () => {
+
+const Corporation = () => {
+
+    const [corporation, setCorporation ] =useState("")
+    const [search, setSearch]= useState("")
+
+    useEffect(()=>{
+        const obj ={
+            role :2
+        }
+
+        axios.post("http://localhost:5000/users/rolelistening",obj)
+        .then((response)=>{
+            console.log("response====",response)
+        }).catch((error)=>{
+            console.log("error=====",error)
+        })
+    })
   return (
-      <div className="app-content content"> 
+      <div className="app-content content">
           <div className="content-overlay"></div>
           <div className="header-navbar-shadow"></div>
           <div className="content-wrapper container-xxl p-0">
@@ -71,13 +89,6 @@ const Userlist = () => {
                                       <thead className="table-light">
                                           <tr role="row">
                                               <th
-                                                  className="control sorting_disabled"
-                                                  rowSpan={1}
-                                                  colSpan={1}
-                                                  style={{ width: "26.7656px", display: "none" }}
-                                                  aria-label=""
-                                              />
-                                              <th
                                                   className="sorting"
                                                   tabIndex={0}
                                                   aria-controls="DataTables_Table_0"
@@ -107,7 +118,7 @@ const Userlist = () => {
                                                   rowSpan={1}
                                                   colSpan={1}
                                                   style={{ width: "91.5625px" }}
-                                                  aria-label="Role: activate to sort column ascending"
+                                                  aria-label="location: activate to sort column ascending"
                                               >
                                                   location
                                               </th>
@@ -118,9 +129,9 @@ const Userlist = () => {
                                                   rowSpan={1}
                                                   colSpan={1}
                                                   style={{ width: "92.2188px" }}
-                                                  aria-label="Plan: activate to sort column ascending"
+                                                  aria-label="Image: activate to sort column ascending"
                                               >
-                                                 Image
+                                                  Image
                                               </th>
                                               <th
                                                   className="sorting"
@@ -145,8 +156,33 @@ const Userlist = () => {
                                           </tr>
                                       </thead>
                                       <tbody>
-                                          <tr className="odd">
-                                          </tr>
+                                        {filtercorporation.map((corporationData)=>{
+                                            <tr key={corporationData?.id}>
+                                                <td>{corporationData?.Email}</td>
+                                                <td>{corporationData?.location}</td>
+                                                <td>{corporationData?.Image}</td>
+                                                <td><button
+                                                    className={`btn ${corporationData.status === 'active' ? 'btn-success' : 'btn-secondary'}`}
+                                                    onClick={() => changestatus(corporationData.id, corporationData.status === "active" ? 1 : 0)}
+                                                >
+                                                    {corporationData.status === "active" ? <FaToggleOn /> : <FaToggleOff />}
+                                                </button></td>
+                                                <td>
+                                                    <button
+                                                        className="btn btn-primary"
+                                                        onClick={() => corporationviewData(userData?.id)}
+                                                    >
+                                                        <FaEye />
+                                                    </button>
+                                                    <button
+                                                        className="btn btn-danger"
+                                                        onClick={() => handleDelete(userData?.id)}
+                                                    >
+                                                        <FaTrash />
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        })}
                                       </tbody>
                                   </table>
                                   <div className="d-flex justify-content-between mx-2 row mb-1">
@@ -202,13 +238,11 @@ const Userlist = () => {
                           </div>
                       </div>
                   </section>
-             
+
               </div>
           </div>
       </div>
-
-
   )
 }
 
-export default Userlist
+export default Corporation

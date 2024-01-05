@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
     const router = useNavigate("")
@@ -19,11 +21,15 @@ const Login = () => {
         axios.post("http://localhost:5000/login", obj)
             .then((response) => {
                 console.log("response=======", response);
+                toast.success("Login succesfull!");
+
                 sessionStorage.setItem("logindata", JSON.stringify(response?.data?.token));
                 router("/dashboard")
             })
             .catch((error) => {
                 console.log("error==========", error);
+                // toast.error("!");
+
             });
     };
 
@@ -219,6 +225,20 @@ const Login = () => {
                   </div>
               </div>
           </div>
+          <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+          />
+          {/* Same as */}
+          <ToastContainer />
       </div>
 
   )

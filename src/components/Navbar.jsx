@@ -1,10 +1,15 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 
 const Navbar = () => {
+
+    const req = useLocation();
+    let title = req?.pathname.split('/')[1].toUpperCase()
   return (
       <>
           <nav className="header-navbar navbar navbar-expand-lg align-items-center floating-nav navbar-light navbar-shadow container-xxl">
               <div className="navbar-container d-flex content">
+                  <h4>{title}</h4>
                   <div className="bookmark-wrapper d-flex align-items-center">
                       <ul className="nav navbar-nav d-xl-none">
                           <li className="nav-item">
@@ -15,18 +20,10 @@ const Navbar = () => {
                       </ul>
                       <ul className="nav navbar-nav bookmark-icons">
                           <li className="nav-item d-none d-lg-block">
-                              <a
-                                  className="nav-link"
-                                  href="app-email.html"
-                                  data-bs-toggle="tooltip"
-                                  data-bs-placement="bottom"
-                                  title="Email"
-                              >
-                                  <i className="ficon" data-feather="mail" />
-                              </a>
+                              
                           </li>
                           <li className="nav-item d-none d-lg-block">
-                              <a
+                              {/* <a
                                   className="nav-link"
                                   href="app-chat.html"
                                   data-bs-toggle="tooltip"
@@ -34,10 +31,10 @@ const Navbar = () => {
                                   title="Chat"
                               >
                                   <i className="ficon" data-feather="message-square" />
-                              </a>
+                              </a> */}
                           </li>
                           <li className="nav-item d-none d-lg-block">
-                              <a
+                              {/* <a
                                   className="nav-link"
                                   href="app-calendar.html"
                                   data-bs-toggle="tooltip"
@@ -45,10 +42,10 @@ const Navbar = () => {
                                   title="Calendar"
                               >
                                   <i className="ficon" data-feather="calendar" />
-                              </a>
+                              </a> */}
                           </li>
                           <li className="nav-item d-none d-lg-block">
-                              <a
+                              {/* <a
                                   className="nav-link"
                                   href="app-todo.html"
                                   data-bs-toggle="tooltip"
@@ -56,14 +53,14 @@ const Navbar = () => {
                                   title="Todo"
                               >
                                   <i className="ficon" data-feather="check-square" />
-                              </a>
+                              </a> */}
                           </li>
                       </ul>
                       <ul className="nav navbar-nav">
                           <li className="nav-item d-none d-lg-block">
-                              <a className="nav-link bookmark-star">
+                              {/* <a className="nav-link bookmark-star">
                                   <i className="ficon text-warning" data-feather="star" />
-                              </a>
+                              </a> */}
                               <div className="bookmark-input search-input">
                                   <div className="bookmark-input-icon">
                                       <i data-feather="search" />

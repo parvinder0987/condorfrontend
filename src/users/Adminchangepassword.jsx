@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import axios from "axios"
 import Instance from '../apis/Instance';
-import swal from 'sweetalert';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+// import swal from 'sweetalert';
 
 
 const Adminchangepassword = () => {
@@ -16,6 +19,7 @@ const Adminchangepassword = () => {
         e.preventDefault()
         if (newPassword !== confirmPassword) {
             setMessage('New passwords do not match.');
+            toast.error('New passwords do not match.');
             return;
         }
         const obj = {
@@ -36,16 +40,18 @@ const Adminchangepassword = () => {
 
         axios.post("/changepassword", obj, config)
         .then((response)=>{
-            swal({
-                title: "Password Updated Successfully!",
-                text: "Done!",
-                icon: "success",
-            });
+            // swal({
+            //     title: "Password Updated Successfully!",
+            //     text: "Done!",
+            //     icon: "success",
+            // });
             console.log("password updated", response);
             setMessage('Password updated successfully!');
+            toast.success("Password Updated Successfully!");
         
         }).then((error)=>{
             console.log("error===",error)
+            toast.error("Error updating password",error);
         })
     }
 
@@ -152,6 +158,20 @@ const Adminchangepassword = () => {
                   </div>
               </div>
           </div>
+          <ToastContainer
+              position="top-right"
+              autoClose={5000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="light"
+          />
+          {/* Same as */}
+          <ToastContainer />
       </div>
 
   )
