@@ -6,24 +6,21 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from './components/Layout'
 import Dashboard from './components/Dashboard'
 import Login from './users/Login'
-
-import Blankfrom from './users/Blankfrom'
 import Adminview from './users/Adminview'
 import Adminchangepassword from './users/Adminchangepassword'
-
 import Logout from './users/Logout'
 import Athlete from './users/Athlete'
 import Corporation from './users/Corporation'
-// import Profile from './users/Profile'
+
+
 
 function App() {
-  // const [count, setCount] = useState(0)
+
 
   return (
    <BrowserRouter>
    <Routes>
     <Route path='/' element={<Login/>}/>
-    <Route path='/dummy' element={<Blankfrom/>}/>
     <Route path='"/logout' element={<Logout/>}/>
     <Route element={<Layout/>}>
       <Route path='/dashboard' element={<Dashboard/>}/>
@@ -31,7 +28,6 @@ function App() {
       <Route path='/adminview' element={<Adminview/>}/>
       <Route path='/athlete' element={<Athlete/>}/>
       <Route path='/corporation' element={<Corporation/>}/>
-      
     </Route>
     </Routes></BrowserRouter>
   )
