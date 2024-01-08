@@ -122,7 +122,7 @@ const Sidebar = () => {
                       <a className="d-flex align-items-center" href="/dashboard">
                           <i data-feather="home" />
                           <span className="menu-title text-truncate" data-i18n="Dashboards">
-                              Dashboards
+                              <b>Dashboards</b>
                           </span>
                           {/* <span className="badge badge-light-warning rounded-pill ms-auto me-1">
                               2
@@ -157,162 +157,7 @@ const Sidebar = () => {
                       <span data-i18n="Apps & Pages">Apps &amp; Pages</span>
                       <i data-feather="more-horizontal" />
                   </li>
-                  {/* <li className=" nav-item">
-                      <a className="d-flex align-items-center" href="app-email.html">
-                          <i data-feather="mail" />
-                          <span className="menu-title text-truncate" data-i18n="Email">
-                              Email
-                          </span>
-                      </a>
-                  </li>
-                  <li className=" nav-item">
-                      <a className="d-flex align-items-center" href="app-chat.html">
-                          <i data-feather="message-square" />
-                          <span className="menu-title text-truncate" data-i18n="Chat">
-                              Chat
-                          </span>
-                      </a>
-                  </li>
-                  <li className=" nav-item">
-                      <a className="d-flex align-items-center" href="app-todo.html">
-                          <i data-feather="check-square" />
-                          <span className="menu-title text-truncate" data-i18n="Todo">
-                              Todo
-                          </span>
-                      </a>
-                  </li>
-                  <li className=" nav-item">
-                      <a className="d-flex align-items-center" href="app-calendar.html">
-                          <i data-feather="calendar" />
-                          <span className="menu-title text-truncate" data-i18n="Calendar">
-                              Calendar
-                          </span>
-                      </a>
-                  </li>
-                  <li className=" nav-item">
-                      <a className="d-flex align-items-center" href="app-kanban.html">
-                          <i data-feather="grid" />
-                          <span className="menu-title text-truncate" data-i18n="Kanban">
-                              Kanban
-                          </span>
-                      </a>
-                  </li>
-                  <li className=" nav-item">
-                      <a className="d-flex align-items-center" href="#">
-                          <i data-feather="file-text" />
-                          <span className="menu-title text-truncate" data-i18n="Invoice">
-                              Invoice
-                          </span>
-                      </a>
-                      <ul className="menu-content">
-                          <li>
-                              <a
-                                  className="d-flex align-items-center"
-                                  href="app-invoice-list.html"
-                              >
-                                  <i data-feather="circle" />
-                                  <span className="menu-item text-truncate" data-i18n="List">
-                                      List
-                                  </span>
-                              </a>
-                          </li>
-                          <li>
-                              <a
-                                  className="d-flex align-items-center"
-                                  href="app-invoice-preview.html"
-                              >
-                                  <i data-feather="circle" />
-                                  <span className="menu-item text-truncate" data-i18n="Preview">
-                                      Preview
-                                  </span>
-                              </a>
-                          </li>
-                          <li>
-                              <a
-                                  className="d-flex align-items-center"
-                                  href="app-invoice-edit.html"
-                              >
-                                  <i data-feather="circle" />
-                                  <span className="menu-item text-truncate" data-i18n="Edit">
-                                      Edit
-                                  </span>
-                              </a>
-                          </li>
-                          <li>
-                              <a
-                                  className="d-flex align-items-center"
-                                  href="app-invoice-add.html"
-                              >
-                                  <i data-feather="circle" />
-                                  <span className="menu-item text-truncate" data-i18n="Add">
-                                      Add
-                                  </span>
-                              </a>
-                          </li>
-                      </ul>
-                  </li>
-                  <li className=" nav-item">
-                      <a className="d-flex align-items-center" href="app-file-manager.html">
-                          <i data-feather="save" />
-                          <span className="menu-title text-truncate" data-i18n="File Manager">
-                              File Manager
-                          </span>
-                      </a>
-                  </li>
-                  <li className=" nav-item">
-                      <a className="d-flex align-items-center" href="#">
-                          <i data-feather="shopping-cart" />
-                          <span className="menu-title text-truncate" data-i18n="eCommerce">
-                              eCommerce
-                          </span>
-                      </a>
-                      <ul className="menu-content">
-                          <li>
-                              <a
-                                  className="d-flex align-items-center"
-                                  href="app-ecommerce-shop.html"
-                              >
-                                  <i data-feather="circle" />
-                                  <span className="menu-item text-truncate" data-i18n="Shop">
-                                      Shop
-                                  </span>
-                              </a>
-                          </li>
-                          <li>
-                              <a
-                                  className="d-flex align-items-center"
-                                  href="app-ecommerce-details.html"
-                              >
-                                  <i data-feather="circle" />
-                                  <span className="menu-item text-truncate" data-i18n="Details">
-                                      Details
-                                  </span>
-                              </a>
-                          </li>
-                          <li>
-                              <a
-                                  className="d-flex align-items-center"
-                                  href="app-ecommerce-wishlist.html"
-                              >
-                                  <i data-feather="circle" />
-                                  <span className="menu-item text-truncate" data-i18n="Wish List">
-                                      Wish List
-                                  </span>
-                              </a>
-                          </li>
-                          <li>
-                              <a
-                                  className="d-flex align-items-center"
-                                  href="app-ecommerce-checkout.html"
-                              >
-                                  <i data-feather="circle" />
-                                  <span className="menu-item text-truncate" data-i18n="Checkout">
-                                      Checkout
-                                  </span>
-                              </a>
-                          </li>
-                      </ul>
-                  </li> */}
+              
                   <li className=" nav-item">
                       <a className="d-flex align-items-center" href="/corporation">
                           <i data-feather="user" />
@@ -329,32 +174,7 @@ const Sidebar = () => {
                           </span>
                       </a>
                   </li>
-                      {/* <ul className="menu-content">
-                          <li>
-                              <a className="d-flex align-items-center" href="app-user-list.html">
-                                  <i data-feather="circle" />
-                                  <span className="menu-item text-truncate" data-i18n="List">
-                                      List
-                                  </span>
-                              </a>
-                          </li>
-                          <li>
-                              <a className="d-flex align-items-center" href="app-user-view.html">
-                                  <i data-feather="circle" />
-                                  <span className="menu-item text-truncate" data-i18n="View">
-                                      View
-                                  </span>
-                              </a>
-                          </li>
-                          <li>
-                              <a className="d-flex align-items-center" href="app-user-edit.html">
-                                  <i data-feather="circle" />
-                                  <span className="menu-item text-truncate" data-i18n="Edit">
-                                      Edit
-                                  </span>
-                              </a>
-                          </li>
-                      </ul> */}
+                   
                   {/* <li className=" nav-item">
                       <a className="d-flex align-items-center" href="#">
                           <i data-feather="file-text" />

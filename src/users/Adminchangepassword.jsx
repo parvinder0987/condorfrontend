@@ -47,11 +47,21 @@ const Adminchangepassword = () => {
             // });
             console.log("password updated", response);
             setMessage('Password updated successfully!');
-            toast.success("Password Updated Successfully!");
+            toast('🦄 password updated!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+
         
         }).then((error)=>{
             console.log("error===",error)
-            toast.error("Error updating password",error);
+            toast.error("Error updating password");
         })
     }
 

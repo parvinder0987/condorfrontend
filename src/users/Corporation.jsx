@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { FaEye, FaTrash, FaToggleOn, FaToggleOff } from "react-icons/fa";
 import MUIDataTable from "mui-datatables";
 import axios from 'axios';
+import swal from "sweetalert";
+
 
 
 const Corporation = () => {
@@ -16,9 +18,8 @@ const Corporation = () => {
 
         axios.post("http://localhost:5000/users/rolelistening", obj)
             .then((response) => {
-                const corporationData = Array.isArray(response.data.user.corporation) ? response.data.user.corporation : [];
-                const corporationWithStatus = corporationData.map(corporationData => ({ ...corporationData }));
-                setCorporation(corporationWithStatus);
+                console.log("response=========", response.data.user)
+                setCorporation(...corporation, response.data.user);
             })
             .catch((error) => {
                 console.log("error=====", error);
@@ -26,17 +27,54 @@ const Corporation = () => {
     }, []);
 
     const changestatus = (id, status) => {
-      
+
     };
 
     const corporationviewData = (id) => {
 
     };
 
+
     const handleDelete = (userId) => {
-       
+        const data = {
+            id: userId
+        }
+
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your imaginary file has been deleted!", {
+                        icon: "success",
+                    });
+
+
+                    axios.delete("http://localhost:5000/users/deleteuser", { data })
+                        .then((response) => {
+                            
+                            console.log("data will be deleted", response.data.user)
+                        }).catch((error) => {
+                            console.log("please check the code", error)
+                        })
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
     };
 
+    const tableData = [];
+    for (let i = 0; i < corporation.length; i++) {
+        const row = [];
+        const { Email, location, image, status } = corporation[i];
+        row.push(i + 1, Email, location, image, status);
+        tableData.push(row)
+
+    }
 
 
     const columns = [
@@ -66,7 +104,7 @@ const Corporation = () => {
         },
         {
             name: "Image",
-            label: "Image",
+            label: "IMAGE",
             options: {
                 filter: false,
                 sort: false,
@@ -127,7 +165,8 @@ const Corporation = () => {
 
 
     const options = {
-        filterType: 'checkbox',
+        selectableRows: "none",
+        
     };
 
     return (
@@ -139,7 +178,7 @@ const Corporation = () => {
                     <div className="content-header-left col-md-9 col-12 mb-2">
                         <div className="row breadcrumbs-top">
                             <div className="col-12">
-                                {/* Add any header content here */}
+                                
                             </div>
                         </div>
                     </div>
@@ -148,6 +187,7 @@ const Corporation = () => {
                     <MUIDataTable
                         columns={columns}
                         options={options}
+                        data={tableData}
                     />
                 </section>
             </div>

@@ -11,6 +11,8 @@ import Adminchangepassword from './users/Adminchangepassword'
 import Logout from './users/Logout'
 import Athlete from './users/Athlete'
 import Corporation from './users/Corporation'
+import View from './users/View'
+import Edit from './users/Edit'
 
 
 
@@ -28,6 +30,8 @@ function App() {
       <Route path='/adminview' element={<Adminview/>}/>
       <Route path='/athlete' element={<Athlete/>}/>
       <Route path='/corporation' element={<Corporation/>}/>
+      <Route path='/view' element={<View/>}/>
+      <Route path='/editdetails' element={<Edit/>}/>
     </Route>
     </Routes></BrowserRouter>
   )
