@@ -1,34 +1,38 @@
-import React, { useState } from 'react'
-
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useLocation } from "react-router-dom";
 const View = () => {
+    const req = useLocation();
     const [user, setUser] = useState({
-        role: 1,
+        Name: '',
+        Email: '',
+        location: '',
+        Phonenumber: '',
+        bio: '',
+        price: '',
+        college: '',
+        tiktokId: '',
+        instaId: '',
+        twitterId: ''
     });
 
     useEffect(() => {
-        const userId = 123
-        axios.get(`http://localhost:5000/users/${userId}`)
-            .then((response) => {
-                setUser(response.data.user);
-            })
-            .catch((error) => {
-                console.error('Error fetching user details:', error);
-            });
-    }, []); 
-    const renderUserRoleDetails = () => {
-        switch (user.role) {
-            case 1:
-                return (
-                    <div>
-                        <h4>Details for Role 1</h4>
-                        <div className="form-group">
-                            <label className="user-info-title fw-bold">Name</label>
-                            <input type="text" className="form-control" value={user.name} readOnly />
-                        </div>
-                    </div>
-                );
+        const storedUserData = localStorage.getItem("userData");
+        if (storedUserData) {
+            let id = req?.search;
+            id = id.split('=')[1];  
+            axios.get(`http://localhost:5000/users/viewdata/${id}`)
+                .then((response) => {
+                    console.log("response==>", response);
+                    setUser(response.data);
+                }).catch((error) => {
+                    console.log("error===>", error);
+                });
+        } else {
+            console.log("No user ID found");
         }
-    };
+    }, []);
+
   return (
       <div className="app-content content">
           <div className="content-overlay" />
@@ -44,13 +48,13 @@ const View = () => {
                                       <div className="row">
                                           <div className="col-xl-6 col-lg-12 mt-2 mt-xl-0">
                                               <div className="user-info-wrapper">
-                                                  {renderUserRoleDetails()}
+                                             
                                                   <div className="form-group">
                                                       <label className="user-info-title fw-bold">Name</label>
                                                       <input
                                                           type="text"
                                                           className="form-control"
-                                                          value="eleanor.aguilar"
+                                                          value={user.Name}
                                                           readOnly
                                                       />
                                                   </div>
@@ -59,7 +63,7 @@ const View = () => {
                                                       <input
                                                           type="text"
                                                           className="form-control"
-                                                          value="--@gmail.com"
+                                                          value={user.Email}
                                                           readOnly
                                                       />
                                                   </div>
@@ -68,7 +72,7 @@ const View = () => {
                                                       <input
                                                           type="text"
                                                           className="form-control"
-                                                          value="Admin"
+                                                          value={user.location}
                                                           readOnly
                                                       />
                                                   </div>
@@ -77,7 +81,7 @@ const View = () => {
                                                       <input
                                                           type="text"
                                                           className="form-control"
-                                                          value="000000000"
+                                                          value={user.Phonenumber}
                                                           readOnly
                                                       />
                                                   </div>
@@ -86,7 +90,7 @@ const View = () => {
                                                       <input
                                                           type="text"
                                                           className="form-control"
-                                                          value=""
+                                                          value={user.bio}
                                                           readOnly
                                                       />
                                                   </div>
@@ -95,7 +99,7 @@ const View = () => {
                                                       <input
                                                           type="text"
                                                           className="form-control"
-                                                          value=""
+                                                          value={user.price}
                                                           readOnly
                                                       />
                                                   </div>
@@ -104,7 +108,7 @@ const View = () => {
                                                       <input
                                                           type="text"
                                                           className="form-control"
-                                                          value="enter college"
+                                                          value={user.college}
                                                           readOnly
                                                       />
                                                   </div>
@@ -113,7 +117,7 @@ const View = () => {
                                                       <input
                                                           type="text"
                                                           className="form-control"
-                                                          value=""
+                                                          value={user.tiktokId}
                                                           readOnly
                                                       />
                                                   </div>
@@ -122,7 +126,7 @@ const View = () => {
                                                       <input
                                                           type="text"
                                                           className="form-control"
-                                                          value=""
+                                                          value={user.instaId}
                                                           readOnly
                                                       />
                                                   </div>
@@ -131,7 +135,7 @@ const View = () => {
                                                       <input
                                                           type="text"
                                                           className="form-control"
-                                                          value=""
+                                                          value={user.twitterId}
                                                           readOnly
                                                       />
                                                   </div>
@@ -149,10 +153,10 @@ const View = () => {
                                                       />
                                                       <div className="d-flex flex-column ms-1">
                                                           <div className="user-info mb-1">
-                                                              <h4 className="mb-0">Eleanor Aguilar</h4>
-                                                              <span className="card-text">
+                                                              {/* <h4 className="mb-0">Eleanor Aguilar</h4> */}
+                                                              {/* <span className="card-text">
                                                                   eleanor.aguilar@gmail.com
-                                                              </span>
+                                                              </span> */}
                                                           </div>
                                                       </div>
                                                   </div>

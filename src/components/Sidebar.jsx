@@ -166,7 +166,7 @@ const Sidebar = () => {
                           </span>
                       </a>
                   </li>
-                    <li>
+                  <li>
                       <a className="d-flex align-items-center" href="/athlete">
                           <i data-feather="user" />
                           <span className="menu-title text-truncate" data-i18n="User">
@@ -174,6 +174,22 @@ const Sidebar = () => {
                           </span>
                       </a>
                   </li>
+                  <li>
+                      <a className="d-flex align-items-center" href="page-faq.html">
+                          <i data-feather="circle" />
+                          <span className="menu-item text-truncate" data-i18n="FAQ">
+                              <b>Terms & conditions</b>
+                          </span>
+                      </a>
+                  </li>
+                  {/* <li>
+                      <a className="d-flex align-items-center" href="#">
+                          <i className="fas fa-file-contract" />
+                          <span className="menu-title text-truncate" data-i18n="text">
+                              <b>Terms & Condition</b>
+                          </span>
+                      </a>
+                  </li> */}
                    
                   {/* <li className=" nav-item">
                       <a className="d-flex align-items-center" href="#">

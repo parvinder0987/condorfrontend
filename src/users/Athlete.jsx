@@ -3,16 +3,18 @@ import MUIDataTable from "mui-datatables";
 import { FaToggleOn, FaToggleOff, FaEye, FaTrash } from 'react-icons/fa';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
+
+
 
 function Athlete() {
     const router = useNavigate();
     const [athlete, setAthlete] = useState([]);
 
-    const abc = {
-        role: 1
-    }
-
-    useEffect(() => {
+    const data = async () => {
+        const abc = {
+            role: 1
+        }
         axios.post("http://localhost:5000/users/rolelistening", abc)
             .then((response) => {
                 console.log("response=========", response.data)
@@ -21,21 +23,23 @@ function Athlete() {
             }).catch((error) => {
                 console.log(error, "error========")
             })
-    }, [])
+    }
+
 
     const changestatus = (id, status) => {
-        // Your implementation for changing status
+
     };
 
+    
     const atheleteviewData = (id) => {
-        sessionStorage.setItem("userID", id);
-        router("/view");
+        router(`/view?id=${id}`)
     };
 
+    // deleted start
+    useEffect(() => {
+        data()
+    }, [])
     const handleDelete = (athleteId) => {
-        const data = {
-            id: athleteId
-        };
 
         swal({
             title: "Are you sure?",
@@ -50,13 +54,9 @@ function Athlete() {
                         icon: "success",
                     });
 
-                    axios.delete("http://localhost:5000/users/deleteuser", { data })
+                    axios.delete(`http://localhost:5000/users/deleteuser/${athleteId}`)
                         .then((response) => {
-                            // Update state after successful deletion
-                            const updatedAthlete = athlete.filter(obj => obj.id !== athleteId);
-                            setAthlete(updatedAthlete);
-
-                            console.log("data will be deleted", response.data.user);
+                            data();
                         }).catch((error) => {
                             console.log("please check the code", error);
                         })
@@ -65,11 +65,48 @@ function Athlete() {
                 }
             });
     };
+// deleted end  
 
-    const Tabledata = athlete.map((item, index) => {
-        const { Email, location, image, status } = item;
-        return [index + 1, Email, location, image, status];
-    });
+//view data in table and  
+    const Tabledata = [];
+    for (let i = 0; i < athlete.length; i++) {
+        const row = [];
+        const { Email, location, image, status, id } = athlete[i];
+
+        const Action = <>
+            <button
+                className="btn btn-primary"
+                onClick={() => atheleteviewData(id)}
+            >
+                <FaEye />
+            </button>
+            <button
+                className="btn btn-danger"
+                onClick={() => handleDelete(id)}
+            >
+                <FaTrash />
+            </button>
+        </>
+        const isActive = status;
+        const Status = <button
+            className={`btn ${isActive ? 'btn-success' : 'btn-secondary'}`}
+            onClick={() => changestatus(id, isActive === "active" ? 1 : 0)}
+        >
+            {isActive === "active" ? <FaToggleOn /> : <FaToggleOff />}
+        </button>
+        const Image = <img src={image} />
+        row.push(i + 1);
+        row.push(Email)
+        row.push(location)
+        row.push(Image)
+        row.push(Status)
+        row.push(Action)
+        Tabledata.push(row)
+
+    }
+    //  view data end 
+
+    // colums field start 
 
     const columns = [
         {
@@ -113,17 +150,6 @@ function Athlete() {
             options: {
                 filter: true,
                 sort: true,
-                customBodyRender: (value, tableMeta) => {
-                    const id = tableMeta.rowData[0];
-                    return (
-                        <button
-                            className={`btn ${value === 'active' ? 'btn-success' : 'btn-secondary'}`}
-                            onClick={() => changestatus(id, value === "active" ? 1 : 0)}
-                        >
-                            {value === "active" ? <FaToggleOn /> : <FaToggleOff />}
-                        </button>
-                    );
-                },
             },
         },
         {
@@ -132,25 +158,6 @@ function Athlete() {
             options: {
                 filter: false,
                 sort: false,
-                customBodyRender: (value, tableMeta) => {
-                    const id = tableMeta.rowData[0];
-                    return (
-                        <>
-                            <button
-                                className="btn btn-primary"
-                                onClick={() => atheleteviewData(id)}
-                            >
-                                <FaEye />
-                            </button>
-                            <button
-                                className="btn btn-danger"
-                                onClick={() => handleDelete(id)}
-                            >
-                                <FaTrash />
-                            </button>
-                        </>
-                    );
-                },
             },
         },
     ];

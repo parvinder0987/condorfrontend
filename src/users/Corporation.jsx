@@ -4,14 +4,17 @@ import { FaEye, FaTrash, FaToggleOn, FaToggleOff } from "react-icons/fa";
 import MUIDataTable from "mui-datatables";
 import axios from 'axios';
 import swal from "sweetalert";
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Corporation = () => {
+    const router = useNavigate("")
 
     const [corporation, setCorporation] = useState([]);
 
-    useEffect(() => {
+//data show in table
+    const data = async () => {
         const obj = {
             role: 2
         };
@@ -24,22 +27,35 @@ const Corporation = () => {
             .catch((error) => {
                 console.log("error=====", error);
             });
-    }, []);
+    }
+    //data show in table end 
 
-    const changestatus = (id, status) => {
+    
+    const changestatus = async (id, currentStatus) => {
+        try {
+            const response = await axios.post('http://localhost:5000/users/statuschange', {
+                id,
+                Status: currentStatus === 1 ? 0 : 1  // Toggle the status
+            });
 
-    };
-
-    const corporationviewData = (id) => {
-
-    };
-
-
-    const handleDelete = (userId) => {
-        const data = {
-            id: userId
+            console.log("Status updated:", response.data);
+            // Return the updated user data
+            return response.data;
+        } catch (error) {
+            console.error("Error updating status:", error);
+            throw error;
         }
-
+    };
+    
+    const corporationviewData = (id) => {
+        router(`/view?id=${id}`)
+    };
+    
+    // deleted data 
+    useEffect(() => {
+        data()
+    }, []);
+    const handleDelete = (userId) => {
         swal({
             title: "Are you sure?",
             text: "Once deleted, you will not be able to recover this imaginary file!",
@@ -54,10 +70,11 @@ const Corporation = () => {
                     });
 
 
-                    axios.delete("http://localhost:5000/users/deleteuser", { data })
+                    axios.delete(`http://localhost:5000/users/deleteuser/${userId}`,)
                         .then((response) => {
-                            
-                            console.log("data will be deleted", response.data.user)
+
+                            data()
+
                         }).catch((error) => {
                             console.log("please check the code", error)
                         })
@@ -66,17 +83,50 @@ const Corporation = () => {
                 }
             });
     };
+    // deleted data end
+
+    // userviewtable and here data
 
     const tableData = [];
     for (let i = 0; i < corporation.length; i++) {
         const row = [];
-        const { Email, location, image, status } = corporation[i];
-        row.push(i + 1, Email, location, image, status);
+        const { Email, location, image, status, id } = corporation[i];
+
+
+        const Action = <>
+            <button
+                className="btn btn-primary"
+                onClick={() => corporationviewData(id)}
+            >
+                <FaEye />
+            </button>
+            <button
+                className="btn btn-danger"
+                onClick={() => handleDelete(id)}
+            >
+                <FaTrash />
+            </button>
+        </>
+        const value = status
+        const Status  =  <button
+            className={`btn ${value === 'active' ? 'btn-success' : 'btn-secondary'}`}
+            onClick={() => changestatus(id, value === "active" ? 1 : 0)}
+        >
+            {value === "active" ? <FaToggleOn /> : <FaToggleOff />}
+        </button>
+        const Image = <img src={image} />
+        row.push(i + 1);
+        row.push(Email)
+        row.push(location)
+        row.push(Image)
+        row.push(Status)
+        row.push(Action)
         tableData.push(row)
 
     }
+    // / userviewtable and here data end
 
-
+// columns
     const columns = [
         {
             name: "serialNumber",
@@ -119,16 +169,8 @@ const Corporation = () => {
             options: {
                 filter: true,
                 sort: true,
-                customBodyRender: (value, tableMeta) => {
-                    const id = tableMeta.rowData[0];
-                    return (
-                        <button
-                            className={`btn ${value === 'active' ? 'btn-success' : 'btn-secondary'}`}
-                            onClick={() => changestatus(id, value === "active" ? 1 : 0)}
-                        >
-                            {value === "active" ? <FaToggleOn /> : <FaToggleOff />}
-                        </button>
-                    );
+                customBodyRender: (value, tableMeta, updateValue) => {
+                    return value; 
                 }
             }
         },
@@ -138,25 +180,6 @@ const Corporation = () => {
             options: {
                 filter: false,
                 sort: false,
-                customBodyRender: (value, tableMeta) => {
-                    const id = tableMeta.rowData[0];
-                    return (
-                        <>
-                            <button
-                                className="btn btn-primary"
-                                onClick={() => corporationviewData(id)}
-                            >
-                                <FaEye />
-                            </button>
-                            <button
-                                className="btn btn-danger"
-                                onClick={() => handleDelete(id)}
-                            >
-                                <FaTrash />
-                            </button>
-                        </>
-                    );
-                }
             }
         },
     ];
@@ -166,7 +189,7 @@ const Corporation = () => {
 
     const options = {
         selectableRows: "none",
-        
+
     };
 
     return (
@@ -178,7 +201,7 @@ const Corporation = () => {
                     <div className="content-header-left col-md-9 col-12 mb-2">
                         <div className="row breadcrumbs-top">
                             <div className="col-12">
-                                
+
                             </div>
                         </div>
                     </div>
