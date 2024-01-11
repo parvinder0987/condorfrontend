@@ -11,7 +11,7 @@ const Sidebar = () => {
                   <li className="nav-item me-auto">
                       <a
                           className="navbar-brand"
-                          href="../../../html/ltr/vertical-menu-template-bordered/index.html"
+                          href=""
                       >
                           <span className="brand-logo">
                               <svg
@@ -90,7 +90,7 @@ const Sidebar = () => {
                                   </g>
                               </svg>
                           </span>
-                          <h2 className="brand-text">Vuexy</h2>
+                          {/* <h2 className="brand-text">Vuexy</h2> */}
                       </a>
                   </li>
                   <li className="nav-item nav-toggle">
@@ -128,57 +128,41 @@ const Sidebar = () => {
                               2
                           </span> */}
                       </a>
-                      {/* <ul className="menu-content">
-                          <li>
-                              <a
-                                  className="d-flex align-items-center"
-                                  href="dashboard-analytics.html"
-                              >
-                                  <i data-feather="circle" />
-                                  <span className="menu-item text-truncate" data-i18n="Analytics">
-                                      Analytics
-                                  </span>
-                              </a>
-                          </li>
-                          <li className="active">
-                              <a
-                                  className="d-flex align-items-center"
-                                  href="dashboard-ecommerce.html"
-                              >
-                                  <i data-feather="circle" />
-                                  <span className="menu-item text-truncate" data-i18n="eCommerce">
-                                      eCommerce
-                                  </span>
-                              </a>
-                          </li>
-                      </ul> */}
                   </li>
                   <li className=" navigation-header">
                       <span data-i18n="Apps & Pages">Apps &amp; Pages</span>
                       <i data-feather="more-horizontal" />
                   </li>
               
-                  <li className=" nav-item">
+                  <li className="nav-item">
                       <a className="d-flex align-items-center" href="/corporation">
-                          <i data-feather="user" />
+                          <i data-feather="briefcase"></i>
                           <span className="menu-title text-truncate" data-i18n="Corporation">
                               <b>Corporation</b>
                           </span>
                       </a>
                   </li>
-                  <li>
+                  <li className="nav-item">
                       <a className="d-flex align-items-center" href="/athlete">
-                          <i data-feather="user" />
+                          <i data-feather="user"></i>
                           <span className="menu-title text-truncate" data-i18n="User">
                               <b>Athlete</b>
                           </span>
                       </a>
                   </li>
-                  <li>
-                      <a className="d-flex align-items-center" href="page-faq.html">
-                          <i data-feather="circle" />
-                          <span className="menu-item text-truncate" data-i18n="FAQ">
-                              <b>Terms & conditions</b>
+                  <li className="nav-item">
+                      <a className="d-flex align-items-center" href="/college">
+                          <i data-feather="book-open"></i>
+                          <span className="menu-item text-truncate" data-i18n="College">
+                              <b>College</b>
+                          </span>
+                      </a>
+                  </li>
+                  <li className="nav-item">
+                      <a className="d-flex align-items-center" href="/terms-conditions">
+                          <i data-feather="file-text"></i>
+                          <span className="menu-item text-truncate" data-i18n="Terms & Conditions">
+                              <b>Terms & Conditions</b>
                           </span>
                       </a>
                   </li>

@@ -1,8 +1,11 @@
-// import { response } from 'express'
+
 import React, { useEffect, useState } from 'react'
 import { FaEye, FaTrash, FaToggleOn, FaToggleOff } from "react-icons/fa";
 import MUIDataTable from "mui-datatables";
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import swal from "sweetalert";
 import { useNavigate } from 'react-router-dom';
 
@@ -35,17 +38,19 @@ const Corporation = () => {
         try {
             const response = await axios.post('http://localhost:5000/users/statuschange', {
                 id,
-                Status: currentStatus === 1 ? 0 : 1  // Toggle the status
+                Status: currentStatus === 1 ? 0 : 1
             });
 
             console.log("Status updated:", response.data);
-            // Return the updated user data
+            toast.success("Status updated successfully!");
             return response.data;
         } catch (error) {
             console.error("Error updating status:", error);
+            toast.error("Error updating status");
             throw error;
         }
     };
+
     
     const corporationviewData = (id) => {
         router(`/view?id=${id}`)
@@ -214,6 +219,20 @@ const Corporation = () => {
                     />
                 </section>
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
+            {/* Same as */}
+            <ToastContainer />
         </div>
     );
 }

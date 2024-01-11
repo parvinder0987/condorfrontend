@@ -4,6 +4,8 @@ import { FaToggleOn, FaToggleOff, FaEye, FaTrash } from 'react-icons/fa';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -26,8 +28,29 @@ function Athlete() {
     }
 
 
-    const changestatus = (id, status) => {
+    const changestatus = async (id, currentStatus) => {
+        try {
+            const newStatus = currentStatus === 0 ? 1 : 0; 
+            const response = await axios.post('http://localhost:5000/users/statuschange', {
+                id,
+                Status: newStatus
+            });
 
+            console.log("Status updated:", response.data);
+            toast.success("Status updated successfully!");
+            setAthlete(athlete.map(a => {
+                if (a.id === id) {
+                    return { ...a, status: newStatus };
+                }
+                return a;   
+            }));
+
+            return response.data;
+        } catch (error) {
+            console.error("Error updating status:", error);
+            toast.error("Error updating status");
+            throw error;
+        }
     };
 
     
@@ -87,12 +110,12 @@ function Athlete() {
                 <FaTrash />
             </button>
         </>
-        const isActive = status;
+        const isActive = status === 1;
         const Status = <button
             className={`btn ${isActive ? 'btn-success' : 'btn-secondary'}`}
-            onClick={() => changestatus(id, isActive === "active" ? 1 : 0)}
+            onClick={() => changestatus(id, status)}
         >
-            {isActive === "active" ? <FaToggleOn /> : <FaToggleOff />}
+            {isActive ? <FaToggleOn /> : <FaToggleOff />}
         </button>
         const Image = <img src={image} />
         row.push(i + 1);
@@ -188,6 +211,20 @@ function Athlete() {
                         />
                     </section>
                 </div>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
+                {/* Same as */}
+                <ToastContainer />
             </div>
         </>
     );
