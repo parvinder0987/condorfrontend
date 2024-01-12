@@ -11,9 +11,9 @@ const View = () => {
         bio: '',
         price: '',
         college: '',
-        tiktokId: '',
-        instaId: '',
-        twitterId: ''
+        tiktok_Id: '',
+        insta_Id: '',
+        twitter_Id: ''
     });
 
     useEffect(() => {
@@ -117,7 +117,7 @@ const View = () => {
                                                       <input
                                                           type="text"
                                                           className="form-control"
-                                                          value={user.tiktokId}
+                                                          value={user.tiktok_Id}
                                                           readOnly
                                                       />
                                                   </div>
@@ -126,7 +126,7 @@ const View = () => {
                                                       <input
                                                           type="text"
                                                           className="form-control"
-                                                          value={user.instaId}
+                                                          value={user.insta_Id}
                                                           readOnly
                                                       />
                                                   </div>
@@ -135,7 +135,7 @@ const View = () => {
                                                       <input
                                                           type="text"
                                                           className="form-control"
-                                                          value={user.twitterId}
+                                                          value={user.twitter_Id}
                                                           readOnly
                                                       />
                                                   </div>

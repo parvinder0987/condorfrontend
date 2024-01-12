@@ -12,6 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 function Athlete() {
     const router = useNavigate();
     const [athlete, setAthlete] = useState([]);
+    const [isActive, setIsActive] = useState(true)
+    const [isStatus, setIsStatus] = useState(false)
 
     const data = async () => {
         const abc = {
@@ -30,6 +32,7 @@ function Athlete() {
 
     const changestatus = async (id, currentStatus) => {
         try {
+            setIsStatus(true)
             const newStatus = currentStatus === 0 ? 1 : 0; 
             const response = await axios.post('http://localhost:5000/users/statuschange', {
                 id,
@@ -37,6 +40,7 @@ function Athlete() {
             });
 
             console.log("Status updated:", response.data);
+            setIsStatus(false)
             toast.success("Status updated successfully!");
             setAthlete(athlete.map(a => {
                 if (a.id === id) {
@@ -61,7 +65,7 @@ function Athlete() {
     // deleted start
     useEffect(() => {
         data()
-    }, [])
+    }, [isStatus])
     const handleDelete = (athleteId) => {
 
         swal({
@@ -94,7 +98,8 @@ function Athlete() {
     const Tabledata = [];
     for (let i = 0; i < athlete.length; i++) {
         const row = [];
-        const { Email, location, image, status, id } = athlete[i];
+        const { Email, location, image, Status, id } = athlete[i];
+        
 
         const Action = <>
             <button
@@ -110,10 +115,11 @@ function Athlete() {
                 <FaTrash />
             </button>
         </>
-        const isActive = status === 1;
-        const Status = <button
+        const isActive = Status === 1;
+        
+        const status = <button
             className={`btn ${isActive ? 'btn-success' : 'btn-secondary'}`}
-            onClick={() => changestatus(id, status)}
+            onClick={() => changestatus(id, Status)}
         >
             {isActive ? <FaToggleOn /> : <FaToggleOff />}
         </button>
@@ -122,7 +128,7 @@ function Athlete() {
         row.push(Email)
         row.push(location)
         row.push(Image)
-        row.push(Status)
+        row.push(status)
         row.push(Action)
         Tabledata.push(row)
 

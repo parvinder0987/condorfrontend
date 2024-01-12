@@ -15,6 +15,9 @@ const Corporation = () => {
     const router = useNavigate("")
 
     const [corporation, setCorporation] = useState([]);
+    const [value, setValue] = useState(true)
+    const [isStatus, setIsStatus] = useState(false)
+
 
 //data show in table
     const data = async () => {
@@ -24,29 +27,40 @@ const Corporation = () => {
 
         axios.post("http://localhost:5000/users/rolelistening", obj)
             .then((response) => {
-                console.log("response=========", response.data.user)
-                setCorporation(...corporation, response.data.user);
+                // console.log("response=========", response.data)
+                setCorporation(response.data.user);
             })
             .catch((error) => {
-                console.log("error=====", error);
-            });
+                console.log(error, "error========")
+            })
     }
     //data show in table end 
 
     
     const changestatus = async (id, currentStatus) => {
         try {
+            setIsStatus(true)
+            const newStatus = currentStatus === 0 ? 1 : 0;
             const response = await axios.post('http://localhost:5000/users/statuschange', {
                 id,
-                Status: currentStatus === 1 ? 0 : 1
+                Status: newStatus
             });
 
             console.log("Status updated:", response.data);
+            setIsStatus(false)
+
             toast.success("Status updated successfully!");
+            setAthlete(athlete.map(a => {
+                if (a.id === id) {
+                    return { ...a, status: newStatus };
+                }
+                return a;
+            }));
+
             return response.data;
         } catch (error) {
             console.error("Error updating status:", error);
-            toast.error("Error updating status");
+            // toast.error("Error updating status");
             throw error;
         }
     };
@@ -59,7 +73,7 @@ const Corporation = () => {
     // deleted data 
     useEffect(() => {
         data()
-    }, []);
+    }, [isStatus]);
     const handleDelete = (userId) => {
         swal({
             title: "Are you sure?",
@@ -95,7 +109,7 @@ const Corporation = () => {
     const tableData = [];
     for (let i = 0; i < corporation.length; i++) {
         const row = [];
-        const { Email, location, image, status, id } = corporation[i];
+        const { Email, location, image, Status, id } = corporation[i];
 
 
         const Action = <>
@@ -112,19 +126,19 @@ const Corporation = () => {
                 <FaTrash />
             </button>
         </>
-        const value = status
-        const Status  =  <button
-            className={`btn ${value === 'active' ? 'btn-success' : 'btn-secondary'}`}
-            onClick={() => changestatus(id, value === "active" ? 1 : 0)}
+        const isActive = Status === 1;
+        const status  =  <button
+            className={`btn ${isActive ? 'btn-success' : 'btn-secondary'}`}
+            onClick={() => changestatus(id, Status)}
         >
-            {value === "active" ? <FaToggleOn /> : <FaToggleOff />}
+            {isActive ? <FaToggleOn /> : <FaToggleOff />}
         </button>
         const Image = <img src={image} />
         row.push(i + 1);
         row.push(Email)
         row.push(location)
         row.push(Image)
-        row.push(Status)
+        row.push(status)
         row.push(Action)
         tableData.push(row)
 
@@ -174,9 +188,6 @@ const Corporation = () => {
             options: {
                 filter: true,
                 sort: true,
-                customBodyRender: (value, tableMeta, updateValue) => {
-                    return value; 
-                }
             }
         },
         {

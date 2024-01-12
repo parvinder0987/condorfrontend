@@ -34,7 +34,8 @@ const Login = () => {
   return (
       <div className="app-content content ">
           <div className="content-overlay" />
-          <div className="header-navbar-shadow" />
+          {/* Removed the div with header-navbar-shadow class */}
+          {/* <div className="header-navbar-shadow" /> */}
           <div className="content-wrapper">
               <div className="content-header row"></div>
               <div className="content-body">
@@ -218,13 +219,12 @@ const Login = () => {
                                   </div>
                               </div>
                           </div>
-                          {/* /Login v1 */}
                       </div>
                   </div>
               </div>
           </div>
-     
       </div>
+
 
   )
 }
