@@ -1,4 +1,5 @@
 import React from 'react'
+import  logos  from "../assets/logo.png";
 
 const Sidebar = () => {
   return (
@@ -13,7 +14,8 @@ const Sidebar = () => {
                           className="navbar-brand"
                           href=""
                       >
-                          <span className="brand-logo">
+                        <img src={logos} />
+                          {/* <span className="brand-logo">
                               <svg
                                   viewBox="0 0 139 95"
                                   version="1.1"
@@ -89,7 +91,7 @@ const Sidebar = () => {
                                       </g>
                                   </g>
                               </svg>
-                          </span>
+                          </span> */}
                           {/* <h2 className="brand-text">Vuexy</h2> */}
                       </a>
                   </li>

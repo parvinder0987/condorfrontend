@@ -13,6 +13,7 @@ import Login from './admin/Login'
 import Logout from './admin/Logout'
 import Adminchangepassword from './admin/Adminchangepassword'
 import Adminview from './admin/Adminview'
+import College from './users/College'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
       <Route path='/corporation' element={<Corporation/>}/>
       <Route path='/view' element={<View/>}/>
       <Route path='/editdetails' element={<Edit/>}/>
+      <Route path='/college' element={<College/>}/>
     </Route>
     </Routes></BrowserRouter>
   )

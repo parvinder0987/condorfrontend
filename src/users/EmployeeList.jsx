@@ -1,148 +1,131 @@
-// import React, { useState, useEffect } from "react";
-// import MUIDataTable from "mui-datatables";
-// import { FaToggleOn, FaToggleOff, FaEye, FaTrash } from 'react-icons/fa';
-// import axios from "axios";
+// import Button from "@mui/material/Button";
+// import CssBaseline from "@mui/material/CssBaseline";
+// import TextField from "@mui/material/TextField";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import Checkbox from "@mui/material/Checkbox";
+// import Link from "@mui/material/Link";
+// import Paper from "@mui/material/Paper";
+// import Box from "@mui/material/Box";
+// import Grid from "@mui/material/Grid";
+// import Typography from "@mui/material/Typography";
+// import { Container } from "@mui/material";
 
-// function EmployeeList() {
-//   const [athlete, setAthlete] = useState([]);
+// export default function SignInSide() {
+//     const handleSubmit = (event) => {
+//         event.preventDefault();
+//         const data = new FormData(event.currentTarget);
+//         console.log({
+//             email: data.get("email"),
+//             password: data.get("password"),
+//         });
+//     };
 
-//   useEffect(() => {
-//     const abc = {
-//       role: 1
-//     }
-//     axios.post("http://localhost:5000/users/rolelistening", abc)
-//       .then((response) => {
-//         console.log("response=========", response)
-//         const athleteWithStatus = response.data.athlete.map((athleteData) => ({
-//           ...athleteData,
-//         }));
-//         setAthlete(athleteWithStatus);
-//       }).catch((error) => {
-//         console.log(error, "error========")
-//       })
-//   },[])
-
-//   const changestatus = (id, status) => {
-//   };
-
-//   const corporationviewData = (id) => {
-   
-//   };
-
-//   const handleDelete = (athleteId) => {
-
-//   };
-
-//   const columns = [
-//     {
-//       name: "serialNumber",
-//       label: "ID",
-//       options: {
-//         display: false,
-//       },
-//     },
-//     {
-//       name: "Email",
-//       label: "Email",
-//       options: {
-//         filter: true,
-//         sort: true,
-//       },
-//     },
-//     {
-//       name: "location",
-//       label: "Location",
-//       options: {
-//         filter: true,
-//         sort: true,
-//       },
-//     },
-//     {
-//       name: "Image",
-//       label: "Image",
-//       options: {
-//         filter: false,
-//         sort: false,
-//         customBodyRender: (value) => {
-//           return <img src={value} alt="Athlete" style={{ width: '50px' }} />;
-//         },
-//       },
-//     },
-//     {
-//       name: "status",
-//       label: "Status",
-//       options: {
-//         filter: true,
-//         sort: true,
-//         customBodyRender: (value, tableMeta) => {
-//           const id = tableMeta.rowData[0];
-//           return (
-//             <button
-//               className={`btn ${value === 'active' ? 'btn-success' : 'btn-secondary'}`}
-//               onClick={() => changestatus(id, value === "active" ? 1 : 0)}
+//     return (
+//         <Container component="main" maxWidth="lg">
+//             <Box
+//                 sx={{
+//                     marginTop: 8,
+//                 }}
 //             >
-//               {value === "active" ? <FaToggleOn /> : <FaToggleOff />}
-//             </button>
-//           );
-//         },
-//       },
-//     },
-//     {
-//       name: "Actions",
-//       label: "Actions",
-//       options: {
-//         filter: false,
-//         sort: false,
-//         customBodyRender: (value, tableMeta) => {
-//           const id = tableMeta.rowData[0];
-//           return (
-//             <>
-//               <button
-//                 className="btn btn-primary"
-//                 onClick={() => corporationviewData(id)}
-//               >
-//                 <FaEye />
-//               </button>
-//               <button
-//                 className="btn btn-danger"
-//                 onClick={() => handleDelete(id)}
-//               >
-//                 <FaTrash />
-//               </button>
-//             </>
-//           );
-//         },
-//       },
-//     },
-//   ];
-
-//   const options = {
-//     filterType: 'checkbox',
-//   };
-
-//   return (
-//     <div className="app-content content">
-//       <div className="content-overlay" />
-//       <div className="header-navbar-shadow" />
-//       <div className="content-wrapper container-xxl p-0">
-//         <div className="content-header row">
-//           <div className="content-header-left col-md-9 col-12 mb-2">
-//             <div className="row breadcrumbs-top">
-//               <div className="col-12">
-//               </div>
-//             </div>
-//           </div>
-     
-//         </div>
-//         <section className="section">
-//           <MUIDataTable
-//             columns={columns}
-//             options={options}
-//           />
-//         </section>
-//       </div>
-//     </div>
-//   );
+//                 <Grid container>
+//                     <CssBaseline />
+//                     <Grid
+//                         item
+//                         xs={false}
+//                         sm={4}
+//                         md={7}
+//                         sx={{
+//                             backgroundImage: "url(https://source.unsplash.com/random)",
+//                             backgroundRepeat: "no-repeat",
+//                             backgroundColor: (t) =>
+//                                 t.palette.mode === "light"
+//                                     ? t.palette.grey[50]
+//                                     : t.palette.grey[900],
+//                             backgroundSize: "cover",
+//                             backgroundPosition: "center",
+//                         }}
+//                     />
+//                     <Grid
+//                         item
+//                         xs={12}
+//                         sm={8}
+//                         md={5}
+//                         component={Paper}
+//                         elevation={6}
+//                         square
+//                     >
+//                         <Box
+//                             sx={{
+//                                 my: 8,
+//                                 mx: 4,
+//                                 display: "flex",
+//                                 flexDirection: "column",
+//                                 alignItems: "center",
+//                             }}
+//                         >
+//                             <Typography component="h1" variant="h5">
+//                                 Login
+//                             </Typography>
+//                             <Box
+//                                 component="form"
+//                                 noValidate
+//                                 onSubmit={handleSubmit}
+//                                 sx={{ mt: 1 }}
+//                             >
+//                                 <TextField
+//                                     margin="normal"
+//                                     required
+//                                     fullWidth
+//                                     id="email"
+//                                     label="Email Address"
+//                                     name="email"
+//                                     autoComplete="email"
+//                                     autoFocus
+//                                     value={email}
+//                                     onChange={(e) => setEmail(e.target.value)}
+//                                 />
+//                                 <TextField
+//                                     margin="normal"
+//                                     required
+//                                     fullWidth
+//                                     name="password"
+//                                     label="Password"
+//                                     type="password"
+//                                     id="password"
+//                                     autoComplete="current-password"
+//                                     value={password}
+//                                     onChange={(e) => setPassword(e.target.value)}
+//                                 />
+//                                 <FormControlLabel
+//                                     control={<Checkbox value="remember" color="primary" />}
+//                                     label="Remember me"
+//                                 />
+//                                 <Button
+//                                     type="submit"
+//                                     fullWidth
+//                                     variant="contained"
+//                                     sx={{ mt: 3, mb: 2 }}
+//                                     onClick={handlechnage} tabIndex={4}
+//                                 >
+//                                     Sign In
+//                                 </Button>
+//                                 <Grid container>
+//                                     <Grid item xs>
+//                                         <Link href="#" variant="body2">
+//                                             Forgot password?
+//                                         </Link>
+//                                     </Grid>
+//                                     <Grid item>
+//                                         <Link href="#" variant="body2">
+//                                             {"Don't have an account? Sign Up"}
+//                                         </Link>
+//                                     </Grid>
+//                                 </Grid>
+//                             </Box>
+//                         </Box>
+//                     </Grid>
+//                 </Grid>
+//             </Box>
+//         </Container>
+//     );
 // }
-
-// export default EmployeeList;
