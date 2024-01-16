@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useLocation } from "react-router-dom";
 const View = () => {
     const req = useLocation();
+    
     const [user, setUser] = useState({
         Name: '',
         Email: '',
@@ -13,7 +14,8 @@ const View = () => {
         college: '',
         tiktok_Id: '',
         insta_Id: '',
-        twitter_Id: ''
+        twitter_Id: '',
+        profile_pic:''
     });
 
     useEffect(() => {
@@ -33,6 +35,15 @@ const View = () => {
         }
     }, []);
 
+      const handleInputChange = (e) => {
+          setUser({ ...user, [e.target.Name]: e.target.value });
+    };
+
+
+    const updateData = (e) => {
+        e.preventDefault();
+        console.log("Updated data", user);
+    };
   return (
       <div className="app-content content">
           <div className="content-overlay" />
@@ -55,7 +66,8 @@ const View = () => {
                                                           type="text"
                                                           className="form-control"
                                                           value={user.Name}
-                                                          readOnly
+                                                          onChange={(e) => handleInputChange(e)}
+                                                          
                                                       />
                                                   </div>
                                                   <div className="form-group">
@@ -64,7 +76,8 @@ const View = () => {
                                                           type="text"
                                                           className="form-control"
                                                           value={user.Email}
-                                                          readOnly
+                                                          onChange={(e)=>handleInputChange(e)}
+                                                          
                                                       />
                                                   </div>
                                                   <div className="form-group">
@@ -73,7 +86,8 @@ const View = () => {
                                                           type="text"
                                                           className="form-control"
                                                           value={user.location}
-                                                          readOnly
+                                                          onChange={(e) => handleInputChange(e)}
+                                                          
                                                       />
                                                   </div>
                                                   <div className="form-group">
@@ -82,7 +96,8 @@ const View = () => {
                                                           type="text"
                                                           className="form-control"
                                                           value={user.Phonenumber}
-                                                          readOnly
+                                                          onChange={(e) => handleInputChange(e)}
+                                                          
                                                       />
                                                   </div>
                                                   <div className="form-group">
@@ -91,7 +106,8 @@ const View = () => {
                                                           type="text"
                                                           className="form-control"
                                                           value={user.bio}
-                                                          readOnly
+                                                          onChange={(e) => handleInputChange(e)}
+                                                          
                                                       />
                                                   </div>
                                                   <div className="form-group">
@@ -100,7 +116,8 @@ const View = () => {
                                                           type="text"
                                                           className="form-control"
                                                           value={user.price}
-                                                          readOnly
+                                                          onChange={(e) => handleInputChange(e)}
+                                                          
                                                       />
                                                   </div>
                                                   <div className="form-group">
@@ -109,7 +126,8 @@ const View = () => {
                                                           type="text"
                                                           className="form-control"
                                                           value={user.college}
-                                                          readOnly
+                                                          onChange={(e) => handleInputChange(e)}
+                                                          
                                                       />
                                                   </div>
                                                   <div className="form-group">
@@ -118,7 +136,8 @@ const View = () => {
                                                           type="text"
                                                           className="form-control"
                                                           value={user.tiktok_Id}
-                                                          readOnly
+                                                          onChange={(e) => handleInputChange(e)}
+                                                          
                                                       />
                                                   </div>
                                                   <div className="form-group">
@@ -127,7 +146,8 @@ const View = () => {
                                                           type="text"
                                                           className="form-control"
                                                           value={user.insta_Id}
-                                                          readOnly
+                                                          onChange={(e) => handleInputChange(e)}
+                                                          
                                                       />
                                                   </div>
                                                   <div className="form-group">
@@ -136,7 +156,8 @@ const View = () => {
                                                           type="text"
                                                           className="form-control"
                                                           value={user.twitter_Id}
-                                                          readOnly
+                                                          onChange={(e) => handleInputChange(e)}
+                                                          
                                                       />
                                                   </div>
                                               </div>
@@ -146,27 +167,24 @@ const View = () => {
                                                   <div className="d-flex justify-content-start">
                                                       <img
                                                           className="img-fluid rounded"
-                                                          src="../../../app-assets/images/avatars/7.png"
+                                                          src={location.protocol+"//"+location.hostname + ":5000/images/users/"+user.profile_pic}
                                                           height={104}
                                                           width={104}
                                                           alt="User avatar"
                                                       />
+                                                      {console.log('http://' + location.protocol + ":5000/images/users/",'=-=-=--=-=hsot')}
                                                       <div className="d-flex flex-column ms-1">
                                                           <div className="user-info mb-1">
-                                                              {/* <h4 className="mb-0">Eleanor Aguilar</h4> */}
-                                                              {/* <span className="card-text">
-                                                                  eleanor.aguilar@gmail.com
-                                                              </span> */}
                                                           </div>
                                                       </div>
                                                   </div>
                                               </div>
                                               <div className="d-flex align-items-center user-total-numbers">
-                                                  {/* ... (monthly sales and annual profit) */}
+                                                
                                               </div>
                                               <div className="d-flex flex-wrap">
-                                                  <a href="/editdetails" className="btn btn-primary">
-                                                      Edit
+                                                  <a href="" onClick={updateData} className="btn btn-primary">
+                                                    Update
                                                   </a>
                                               
                                               </div>

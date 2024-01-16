@@ -14,7 +14,9 @@ const Sidebar = () => {
                           className="navbar-brand"
                           href=""
                       >
-                        <img src={logos} />
+                          <img src={logos} alt="Girl in a jacket"
+                              width="183"
+                              height="103" />
                           {/* <span className="brand-logo">
                               <svg
                                   viewBox="0 0 139 95"
@@ -118,6 +120,7 @@ const Sidebar = () => {
               <ul
                   className="navigation navigation-main"
                   id="main-menu-navigation"
+                  style={{ height: "88%" }}
                   data-menu="menu-navigation"
               >
                   <li className=" nav-item">

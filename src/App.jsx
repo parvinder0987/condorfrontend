@@ -8,12 +8,13 @@ import Dashboard from './components/Dashboard'
 import Athlete from './users/Athlete'
 import Corporation from './users/Corporation'
 import View from './users/View'
-import Edit from './users/Edit'
+// import Edit from './users/Edit'
 import Login from './admin/Login'
 import Logout from './admin/Logout'
 import Adminchangepassword from './admin/Adminchangepassword'
 import Adminview from './admin/Adminview'
 import College from './users/College'
+import ViewCollege from './users/ViewCollege'
 
 function App() {
   return (
@@ -29,8 +30,9 @@ function App() {
       <Route path='/athlete' element={<Athlete/>}/>
       <Route path='/corporation' element={<Corporation/>}/>
       <Route path='/view' element={<View/>}/>
-      <Route path='/editdetails' element={<Edit/>}/>
+      {/* <Route path='/editdetails' element={<Edit/>}/> */}
       <Route path='/college' element={<College/>}/>
+      <Route path='/collegeview' element={<ViewCollege/>}/>
     </Route>
     </Routes></BrowserRouter>
   )
