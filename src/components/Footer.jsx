@@ -6,13 +6,13 @@ const Footer = () => {
           <footer className="footer footer-static footer-light">
               <p className="clearfix mb-0">
                   <span className="float-md-start d-block d-md-inline-block mt-25">
-                      COPYRIGHT © 2021
+                      COPYRIGHT © 2023
                       <a
                           className="ms-25"
                           href="https://1.envato.market/pixinvent_portfolio"
                           target="_blank"
                       >
-                          Pixinvent
+                          Cqlsys
                       </a>
                       <span className="d-none d-sm-inline-block">, All rights Reserved</span>
                   </span>

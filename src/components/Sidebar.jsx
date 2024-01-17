@@ -163,22 +163,25 @@ const Sidebar = () => {
                           </span>
                       </a>
                   </li>
-                  <li className="nav-item">
-                      <a className="d-flex align-items-center" href="/terms-conditions">
+                  {/* <li className="nav-item">
+                      <a className="d-flex align-items-center" href="/termscondition">
                           <i data-feather="file-text"></i>
                           <span className="menu-item text-truncate" data-i18n="Terms & Conditions">
                               <b>Terms & Conditions</b>
                           </span>
                       </a>
-                  </li>
-                  {/* <li>
-                      <a className="d-flex align-items-center" href="#">
+                  </li> */}
+
+
+                  
+                  <li>
+                      <a className="d-flex align-items-center" href="/termscondition">
                           <i className="fas fa-file-contract" />
                           <span className="menu-title text-truncate" data-i18n="text">
                               <b>Terms & Condition</b>
                           </span>
                       </a>
-                  </li> */}
+                  </li>
                    
                   {/* <li className=" nav-item">
                       <a className="d-flex align-items-center" href="#">
