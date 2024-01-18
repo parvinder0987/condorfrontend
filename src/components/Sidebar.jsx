@@ -129,9 +129,6 @@ const Sidebar = () => {
                           <span className="menu-title text-truncate" data-i18n="Dashboards">
                               <b>Dashboards</b>
                           </span>
-                          {/* <span className="badge badge-light-warning rounded-pill ms-auto me-1">
-                              2
-                          </span> */}
                       </a>
                   </li>
                   <li className=" navigation-header">
@@ -163,18 +160,18 @@ const Sidebar = () => {
                           </span>
                       </a>
                   </li>
-                  {/* <li className="nav-item">
-                      <a className="d-flex align-items-center" href="/termscondition">
-                          <i data-feather="file-text"></i>
-                          <span className="menu-item text-truncate" data-i18n="Terms & Conditions">
-                              <b>Terms & Conditions</b>
+
+                  <li className="nav-item">
+                      <a className="d-flex align-items-center" href="/sports">
+                          <i className="fas fa-futbol"></i>
+                          <span className="menu-title text-truncate" data-i18n="text">
+                              <b>Sports</b>
                           </span>
                       </a>
-                  </li> */}
-
+                  </li>
 
                   
-                  <li>
+                  <li className="nav-item">
                       <a className="d-flex align-items-center" href="/termscondition">
                           <i className="fas fa-file-contract" />
                           <span className="menu-title text-truncate" data-i18n="text">
@@ -183,6 +180,25 @@ const Sidebar = () => {
                       </a>
                   </li>
                    
+                  <li className="nav-item">
+                      <a className="d-flex align-items-center" href="/aboutus">
+                          <i className="fas fa-info-circle"></i>
+                          <span className="menu-title text-truncate" data-i18n="text">
+                              <b>About Us</b>
+                          </span>
+                      </a>
+                  </li>
+
+                  <li className="nav-item">
+                      <a className="d-flex align-items-center" href="/privacypolicy">
+                          <i className="fas fa-user-secret"></i>
+                          <span className="menu-title text-truncate" data-i18n="text">
+                              <b>Privacy Policy</b>
+                          </span>
+                      </a>
+                  </li>
+
+
                   {/* <li className=" nav-item">
                       <a className="d-flex align-items-center" href="#">
                           <i data-feather="file-text" />

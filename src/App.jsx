@@ -15,7 +15,10 @@ import Adminchangepassword from './admin/Adminchangepassword'
 import Adminview from './admin/Adminview'
 import College from './users/College'
 import ViewCollege from './users/ViewCollege'
-import TermsConditions from './users/TermsConditions'
+import TermsConditions from './cms/TermsConditions'
+import AboutUs from './cms/AboutUs'
+import PrivacyPolicy from './cms/PrivacyPolicy'
+import CategoryTable from './users/CategoryTable'
 
 function App() {
   return (
@@ -34,7 +37,11 @@ function App() {
       {/* <Route path='/editdetails' element={<Edit/>}/> */}
       <Route path='/college' element={<College/>}/>
       <Route path='/collegeview' element={<ViewCollege/>}/>
-      <Route path='/termscondition' element={<TermsConditions/>}/>
+      <Route path='/sports' element={<CategoryTable/>}/>
+      {/* <Route path='/termscondition' element={<TermsConditions/>}/> */}
+          <Route path='/termscondition' element={<TermsConditions/>}/>
+          <Route path='/aboutus' element={<AboutUs/>}/>
+          <Route path='/privacypolicy' element={<PrivacyPolicy/>}/>
     </Route>
     </Routes></BrowserRouter>
   )

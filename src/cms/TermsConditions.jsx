@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from "react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-// import { http } from "../../axios";  
 import axios from "axios";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function TermsConditions() {
+
   const [abouts, setAbouts] = useState({
-    title: "",
-    content: "",
+    Title: "",
+    Content: "",
   });
 
   const Aboustgethandle = async () => {
     try {
-      const response = await http.get("/getallabouts");
-      const data = response.data.data;
-      setAbouts(data);
+      const response = await axios.get(`/users/Cms`);
+      setAbouts(response.data.data);
     } catch (error) {
-      console.log(error);
+      console.log("error", error);
     }
   };
   useEffect(() => {
@@ -28,20 +29,21 @@ function TermsConditions() {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("title", abouts.title);
-      formData.append("content", abouts.content);
-      const response = await http.put("/aboutsupdate", formData);
+      formData.append("Title", abouts.Title);
+      formData.append("Content", abouts.Content);
+      const response = await axios.post("/users/updatecms", formData);
+      console.log(response, "response========>");
       if (response.data) {
-        toast.success("Abouts update Successfully ");
+        toast.success("terms update Successfully ");
       }
     } catch (error) {
-      console.log(error);
+      console.log(error, "error");
     }
   };
 
   const handleCKEditorChange = (event, editor) => {
-    const content = editor.getData();
-    setAbouts((prevState) => ({ ...prevState, content: content }));
+    const Content = editor.getData();
+    setAbouts((prevState) => ({ ...prevState, Content: Content }));
   };
 
   const handleChange = (e) => {
@@ -62,9 +64,9 @@ function TermsConditions() {
             <div className="content-header-left col-md-9 col-12 mb-2">
               <div className="row breadcrumbs-top">
                 <div className="col-12">
-                  <h2 className="content-header-title float-start mb-0">
+                  {/* <h2 className="content-header-title float-start mb-0">
                     Abouts Edit
-                  </h2>
+                  </h2> */}
                 </div>
               </div>
             </div>
@@ -98,8 +100,8 @@ function TermsConditions() {
                               </label>
                               <input
                                 type="text"
-                                name="title"
-                                value={abouts?.title}
+                                name="Title"
+                                value={abouts?.Title}
                                 id="blog-edit-title"
                                 onChange={handleChange}
                                 className="form-control"
@@ -114,8 +116,8 @@ function TermsConditions() {
                                   <div className="editor">
                                     <CKEditor
                                       editor={ClassicEditor}
-                                      name="content"
-                                      data={abouts.content}
+                                      name="Content"
+                                      data={abouts?.Content}
                                       onChange={handleCKEditorChange}
                                     />
                                   </div>
@@ -142,6 +144,20 @@ function TermsConditions() {
             </div>
           </div>
         </div>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        {/* Same as */}
+        <ToastContainer />
       </div>
     </>
   );

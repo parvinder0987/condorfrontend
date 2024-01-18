@@ -5,6 +5,8 @@ import { FaEye, FaTrash, FaToggleOn, FaToggleOff } from 'react-icons/fa';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
+import swal from "sweetalert";
+
 
 const College = () => {
     const router = useNavigate();
@@ -32,29 +34,49 @@ const College = () => {
         router(`/collegeview?id=${id}`);
     };
 
-    const handleDelete = (id) => {
+    const handleDelete = (collegeId) => {
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    swal("Poof! Your imaginary file has been deleted!", {
+                        icon: "success",
+                    });
+
+                    axios.delete(`http://localhost:5000/users/deletedata/${collegeId}`)
+                        .then((response) => {
+                            data();
+                        }).catch((error) => {
+                            console.log("please check the code", error);
+                        })
+                } else {
+                    swal("Your imaginary file is safe!");
+                }
+            });
+
     };
 
     const changestatus = async (id, currentStatus) => {
         try {
             setRefresh(false)
-            const newStatus = currentStatus === '0' ? '1' : '0' ;
+            const newStatus = currentStatus === '0' ? '1' : '0';
 
-            
+
             const response = await axios.post('http://localhost:5000/users/chnagestatus', {
-                id:id,
+                id: id,
                 Status: newStatus
             });
             // setIsStatus(false)
-            
+
             toast.success("Status updated successfully!");
             setRefresh(true)
-            setAthlete(athlete.map(a => {
-                if (a.id === id) {
-                    return { ...a, status: newStatus };
-                }
-                return a;
-            }));
+          
+            
 
             return response.data;
         } catch (error) {
@@ -65,7 +87,7 @@ const College = () => {
 
     const isActive = (status) => status == 1;
     const renderStatusButton = (item) => (
-        
+
         <button
             className={`btn ${isActive(item.status) ? 'btn-success' : 'btn-secondary'}`}
             onClick={() => changestatus(item[0], item[2])}
